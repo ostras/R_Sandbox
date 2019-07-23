@@ -59,3 +59,18 @@ dogs <- dogs %>%
 # COLUMNS NAMES #
 
 new_col_names  <- names(dogs)
+
+# CONCATENATE DATA FRAMES #
+
+student_files <- list.files(pattern = "exams_.*csv")
+df_list <- lapply(student_files,read_csv)
+students <- bind_rows(df_list)
+
+# NUMBER OF ROWS #
+
+nrow_students <- nrow(students)
+
+# TRANSFORM COLUMNS TO VALUES/PROPERTIES - KEY/VALUE #
+
+students <- students %>%
+  gather('fractions','probability',key='exam',value='score')
